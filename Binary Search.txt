@@ -1,0 +1,69 @@
+Module Module1
+    Dim StudentNames(10) As String
+    Dim searchItem As String
+    Dim found As Boolean
+    Dim searchFailed As Boolean
+    Dim First As Integer
+    Dim Middle As Integer
+    Dim last As Integer
+
+
+    Sub Main()
+        StudentNames(1) = "Jabulani"
+        StudentNames(2) = "Dion"
+        StudentNames(3) = "Shivam"
+        StudentNames(4) = "Ricky"
+        StudentNames(5) = "Alexi"
+        StudentNames(6) = "Karabo"
+        StudentNames(7) = "Kundai"
+        StudentNames(8) = "Kupa"
+        StudentNames(9) = "Tanatswa"
+        StudentNames(10) = "Lampost"
+
+        found = False
+        searchFailed = False
+
+
+        Array.Sort(StudentNames)
+        For i = 1 To 10
+            Console.WriteLine("Slot " & i & " is: " & StudentNames(i))
+
+        Next
+
+
+        Console.WriteLine("Which student are you looking for")
+        searchItem = Console.ReadLine
+
+        First = 1
+        last = 10
+
+
+        Do While found = False And searchFailed = False
+
+            Middle = (First + last) / 2
+
+            If StudentNames(Middle) = searchItem Then
+                found = True
+            ElseIf First >= last Then
+                found = False
+            ElseIf StudentNames(Middle) > searchItem Then
+                last = Middle - 1
+            Else
+                First = Middle + 1
+
+            End If
+        Loop
+
+        If found = True Then
+            Console.WriteLine("FOUND IN SLOT" & Middle)
+        Else
+            Console.WriteLine("NOT FOUND IN THE ARRAY")
+            ''    ELSEIF found = False then  
+            '' Console.WriteLine("failed")
+
+        End If
+
+        Console.ReadKey()
+    End Sub
+
+End Module
